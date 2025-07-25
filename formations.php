@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations - GilTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                        dark: '#0f172a',
+                        'dark-light': '#1e293b'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounceIt 3s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes bounceIt {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.6); }
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .formation-card {
+            transition: all 0.3s ease;
+        }
+        .formation-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.php" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">GilTech</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.php" class="hover:text-primary transition-colors">Accueil</a>
+                    <a href="produits.php" class="hover:text-primary transition-colors">Produits</a>
+                    <a href="formations.php" class="text-primary font-semibold">Formations</a>
+                    <a href="about.php" class="hover:text-primary transition-colors">À propos</a>
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden md:hidden glass">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.php" class="block hover:text-primary transition-colors">Accueil</a>
+                <a href="produits.php" class="block hover:text-primary transition-colors">Produits</a>
+                <a href="formations.php" class="block text-primary font-semibold">Formations</a>
+                <a href="about.php" class="block hover:text-primary transition-colors">À propos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="absolute top-20 left-20 w-24 h-24 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-20 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-float" style="animation-delay: -2s;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-4xl mx-auto animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Nos Formations</span><br>
+                    <span class="text-gray-800 dark:text-white">Professionnelles</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                    Développez vos compétences avec nos formations pratiques animées par des experts passionnés. 
+                    De l'initiation à la spécialisation avancée, trouvez la formation qui vous correspond.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#formations" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse-glow">
+                        Découvrir nos formations
+                    </a>
+                    <a href="#contact" class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full font-semibold transition-all duration-300">
+                        Nous contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="py-20 bg-white dark:bg-dark-light">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center animate-bounce-slow">
+                    <div class="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Étudiants formés</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 0.5s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chalkboard-teacher text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-2">15+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Formations disponibles</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 1s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-star text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-2">4.9/5</div>
+                    <div class="text-gray-600 dark:text-gray-300">Note moyenne</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 1.5s">
+                    <div class="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-certificate text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold gradient-text mb-2">95%</div>
+                    <div class="text-gray-600 dark:text-gray-300">Taux de réussite</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avantages de nos formations -->
+    <section class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Pourquoi choisir GilTech ?</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Des formations de qualité avec un accompagnement personnalisé
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Petits groupes</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Maximum 20 participants par formation pour un suivi personnalisé et une meilleure interaction.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Pratique intensive</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        80% de pratique avec des projets concrets et des exercices adaptés au monde professionnel.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-medal text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Certification</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Obtenez une certification reconnue à la fin de chaque formation pour valoriser vos compétences.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.3s">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Horaires flexibles</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Formations en soirée et weekend pour s'adapter à votre emploi du temps professionnel.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.4s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Support continu</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Accompagnement pendant et après la formation via notre plateforme d'entraide.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.5s">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Matériel fourni</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Tout le matériel et les outils nécessaires sont mis à disposition pendant les formations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Formations -->
+    <section id="formations" class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Toutes nos Formations</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Découvrez notre catalogue complet de formations professionnelles
+                </p>
+            </div>
+            
+            <!-- Grille des formations -->
+            <div id="formationsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Les formations seront chargées ici via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="py-20 bg-white dark:bg-dark-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Ce que disent nos étudiants</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Des retours authentiques de personnes qui ont transformé leur carrière
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-dark rounded-2xl p-8 animate-scale-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "La formation Arduino m'a permis de réaliser mon projet de maison connectée. L'accompagnement était exceptionnel !"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="Thomas" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <div class="font-semibold">Thomas Martin</div>
+                            <div class="text-sm text-gray-500">Formation Arduino & IoT</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-dark rounded-2xl p-8 animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "Grâce à la formation développement web, j'ai pu changer de carrière et devenir développeuse freelance."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150" alt="Marie" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <div class="font-semibold">Marie Dubois</div>
+                            <div class="text-sm text-gray-500">Développement Web Complet</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-dark rounded-2xl p-8 animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "Formation très pratique en cybersécurité. J'ai immédiatement pu appliquer les concepts dans mon travail."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Pierre" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <div class="font-semibold">Pierre Leroy</div>
+                            <div class="text-sm text-gray-500">Cybersécurité Fondamentale</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 bg-gradient-to-r from-primary to-secondary">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Prêt à développer vos compétences ?
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Notre équipe pédagogique est là pour vous conseiller et vous aider à choisir la formation qui transformera votre carrière.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://wa.me/+33123456789" target="_blank" class="px-8 py-4 bg-white text-primary rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    <i class="fab fa-whatsapp mr-2"></i>Nous contacter
+                </a>
+                <a href="mailto:formations@giltech.com" class="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-primary rounded-full font-semibold transition-all duration-300">
+                    <i class="fas fa-envelope mr-2"></i>Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-microchip text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold gradient-text">GilTech</span>
+                    </div>
+                    <p class="text-gray-300">
+                        Votre partenaire technologique de confiance pour tous vos besoins en électronique et formation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.php" class="text-gray-300 hover:text-primary transition-colors">Accueil</a></li>
+                        <li><a href="produits.php" class="text-gray-300 hover:text-primary transition-colors">Produits</a></li>
+                        <li><a href="formations.php" class="text-gray-300 hover:text-primary transition-colors">Formations</a></li>
+                        <li><a href="about.php" class="text-gray-300 hover:text-primary transition-colors">À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Formations Populaires</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors">Développement Web</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Arduino & IoT</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Cybersécurité</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Data Science</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-envelope mr-2"></i> formations@giltech.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Avenue de la Technologie, Paris</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GilTech. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données complètes des formations
+        const allFormations = [
+            {
+                id: 1,
+                title: "Développement Web Complet",
+                description: "Maîtrisez le développement web moderne avec HTML5, CSS3, JavaScript, PHP et MySQL. Formation pratique avec projets réels.",
+                duration: "3 mois",
+                durationCategory: "moyen",
+                price: 599.99,
+                maxParticipants: 15,
+                currentParticipants: 8,
+                startDate: "2024-09-01",
+                schedule: "Lun, Mer, Ven: 18h-21h",
+                level: "debutant",
+                whatsappContact: "+33123456794",
+                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500",
+                featured: true,
+                instructor: "Sarah Digital",
+                category: "Programmation",
+                rating: 4.9,
+                modules: ["HTML5 & CSS3", "JavaScript ES6+", "PHP 8", "MySQL", "Projets pratiques"]
+            },
+            {
+                id: 2,
+                title: "Arduino et IoT",
+                description: "Créez des objets connectés avec Arduino. Capteurs, actionneurs, WiFi, Bluetooth et projets IoT concrets.",
+                duration: "6 semaines",
+                durationCategory: "court",
+                price: 399.99,
+                maxParticipants: 12,
+                currentParticipants: 5,
+                startDate: "2024-08-15",
+                schedule: "Samedi: 9h-17h",
+                level: "intermediaire",
+                whatsappContact: "+33123456795",
+                image: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=500",
+                featured: true,
+                instructor: "Alexandre Code",
+                category: "IoT & Électronique",
+                rating: 4.8,
+                modules: ["Programmation Arduino", "Capteurs & Actionneurs", "WiFi & Bluetooth", "Projets IoT"]
+            },
+            {
+                id: 3,
+                title: "Réparation Smartphones",
+                description: "Apprenez à diagnostiquer et réparer les pannes courantes des smartphones. Formation pratique avec vrais appareils.",
+                duration: "4 semaines",
+                durationCategory: "court",
+                price: 499.99,
+                maxParticipants: 10,
+                currentParticipants: 10,
+                startDate: "2024-10-01",
+                schedule: "Mar, Jeu: 18h-21h",
+                level: "debutant",
+                whatsappContact: "+33123456796",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500",
+                featured: false,
+                instructor: "Michel Répar",
+                category: "Réparation",
+                rating: 4.7,
+                modules: ["Diagnostic de pannes", "Démontage sécurisé", "Soudure composants", "Remplacement pièces"]
+            },
+            {
+                id: 4,
+                title: "Cybersécurité Fondamentale",
+                description: "Découvrez les concepts clés de la cybersécurité. Menaces, protection, cryptographie et bonnes pratiques.",
+                duration: "2 mois",
+                durationCategory: "moyen",
+                price: 699.99,
+                maxParticipants: 20,
+                currentParticipants: 12,
+                startDate: "2024-11-01",
+                schedule: "Lun, Mer: 19h-21h",
+                level: "intermediaire",
+                whatsappContact: "+33123456797",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500",
+                featured: true,
+                instructor: "Laura Secure",
+                category: "Sécurité",
+                rating: 4.9,
+                modules: ["Principes de sécurité", "Menaces courantes", "Cryptographie", "Sécurité réseau"]
+            },
+            {
+                id: 5,
+                title: "Programmation Python",
+                description: "Apprenez Python, le langage le plus populaire. Variables, fonctions, bibliothèques et projets pratiques.",
+                duration: "8 semaines",
+                durationCategory: "moyen",
+                price: 449.99,
+                maxParticipants: 18,
+                currentParticipants: 15,
+                startDate: "2024-09-15",
+                schedule: "Mar, Jeu: 18h30-20h30",
+                level: "debutant",
+                whatsappContact: "+33123456798",
+                image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500",
+                featured: false,
+                instructor: "David Algo",
+                category: "Programmation",
+                rating: 4.8,
+                modules: ["Bases Python", "Structures de données", "Fonctions", "Bibliothèques", "Projets"]
+            },
+            {
+                id: 6,
+                title: "Développement Mobile React Native",
+                description: "Créez des applications mobiles multiplateformes avec React Native. De la conception au déploiement.",
+                duration: "4 mois",
+                durationCategory: "long",
+                price: 799.99,
+                maxParticipants: 12,
+                currentParticipants: 7,
+                startDate: "2024-10-01",
+                schedule: "Lun, Mer, Ven: 18h-21h",
+                level: "avance",
+                whatsappContact: "+33123456799",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500",
+                featured: true,
+                instructor: "Sophie Mobile",
+                category: "Développement Mobile",
+                rating: 4.9,
+                modules: ["Composants React Native", "Navigation", "API Integration", "Déploiement"]
+            },
+            {
+                id: 7,
+                title: "Réseaux Informatiques",
+                description: "Comprenez les réseaux informatiques. Modèle OSI, TCP/IP, routage, commutation et configuration d'équipements.",
+                duration: "5 semaines",
+                durationCategory: "court",
+                price: 349.99,
+                maxParticipants: 15,
+                currentParticipants: 9,
+                startDate: "2024-08-01",
+                schedule: "Mar, Jeu: 18h-20h",
+                level: "debutant",
+                whatsappContact: "+33123456800",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500",
+                featured: false,
+                instructor: "Paul Network",
+                category: "Réseaux",
+                rating: 4.6,
+                modules: ["Modèle OSI", "TCP/IP", "Routage", "Commutation", "Configuration"]
+            },
+            {
+                id: 8,
+                title: "Data Science avec Python",
+                description: "Introduction à la science des données. Analyse, visualisation, machine learning et projets concrets.",
+                duration: "4 mois",
+                durationCategory: "long",
+                price: 899.99,
+                maxParticipants: 10,
+                currentParticipants: 6,
+                startDate: "2024-09-01",
+                schedule: "Mer, Ven: 18h30-21h30",
+                level: "avance",
+                whatsappContact: "+33123456801",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500",
+                featured: true,
+                instructor: "Émilie Data",
+                category: "Data Science",
+                rating: 4.9,
+                modules: ["Collecte de données", "Analyse exploratoire", "Machine Learning", "Visualisation"]
+            },
+            {
+                id: 9,
+                title: "Intelligence Artificielle Pratique",
+                description: "Découvrez l'IA avec des projets concrets. TensorFlow, réseaux de neurones et applications réelles.",
+                duration: "3 mois",
+                durationCategory: "moyen",
+                price: 999.99,
+                maxParticipants: 8,
+                currentParticipants: 3,
+                startDate: "2024-11-15",
+                schedule: "Lun, Jeu: 18h-21h",
+                level: "avance",
+                whatsappContact: "+33123456802",
+                image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=500",
+                featured: true,
+                instructor: "Dr. AI Expert",
+                category: "Intelligence Artificielle",
+                rating: 5.0,
+                modules: ["Bases de l'IA", "TensorFlow", "Réseaux de neurones", "Projets IA"]
+            },
+            {
+                id: 10,
+                title: "Blockchain et Cryptomonnaies",
+                description: "Comprenez la blockchain, créez des smart contracts et explorez l'écosystème crypto.",
+                duration: "6 semaines",
+                durationCategory: "court",
+                price: 549.99,
+                maxParticipants: 12,
+                currentParticipants: 4,
+                startDate: "2024-10-15",
+                schedule: "Mer, Sam: 14h-18h",
+                level: "intermediaire",
+                whatsappContact: "+33123456803",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500",
+                featured: false,
+                instructor: "Crypto Master",
+                category: "Blockchain",
+                rating: 4.7,
+                modules: ["Principes blockchain", "Smart contracts", "Cryptomonnaies", "DeFi"]
+            }
+        ];
+
+        // Éléments DOM
+        const formationsGrid = document.getElementById('formationsGrid');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Fonction pour créer une carte de formation
+        function createFormationCard(formation, index) {
+            const isFull = formation.currentParticipants >= formation.maxParticipants;
+            const startDateFormatted = new Date(formation.startDate).toLocaleDateString('fr-FR');
+            const availablePlaces = formation.maxParticipants - formation.currentParticipants;
+            
+            return `
+                <div class="formation-card bg-white dark:bg-dark-light rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden animate-scale-in" style="animation-delay: ${index * 0.1}s">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${formation.image}" alt="${formation.title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            ${formation.featured ? `<span class="bg-gradient-to-r from-accent to-secondary text-white text-xs font-bold px-3 py-1 rounded-full">Populaire</span>` : ''}
+                            ${isFull ? `<span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">Complet</span>` : ''}
+                        </div>
+                        
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <div class="flex items-center gap-1 mb-2">
+                                ${Array.from({length: 5}, (_, i) => 
+                                    `<i class="fas fa-star ${i < Math.floor(formation.rating) ? 'text-yellow-400' : 'text-gray-400'} text-sm"></i>`
+                                ).join('')}
+                                <span class="text-sm ml-2">${formation.rating}/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">${formation.category}</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm font-medium rounded-full capitalize">${formation.level}</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold mb-3 gradient-text">${formation.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">${formation.description}</p>
+                        
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-clock w-4 mr-3 text-primary"></i>
+                                <span>${formation.duration} • ${formation.schedule}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-user-tie w-4 mr-3 text-primary"></i>
+                                <span>${formation.instructor}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-users w-4 mr-3 text-primary"></i>
+                                <span>${isFull ? 'Complet' : `${availablePlaces} places restantes`}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-calendar-alt w-4 mr-3 text-primary"></i>
+                                <span>Début: ${startDateFormatted}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="text-2xl font-bold gradient-text">${formation.price}€</div>
+                            <button onclick="viewFormationDetails(${formation.id})" class="text-primary hover:text-primary/80 text-sm font-medium">
+                                Voir détails <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                        
+                        <a href="https://wa.me/${formation.whatsappContact}?text=Bonjour, je suis intéressé(e) par la formation ${encodeURIComponent(formation.title)}" 
+                           target="_blank" 
+                           class="block text-center w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                               isFull 
+                                   ? 'bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400 cursor-not-allowed' 
+                                   : 'bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:scale-105'
+                           }"
+                           ${isFull ? 'onclick="return false;"' : ''}>
+                            ${isFull ? 'Formation complète' : 'S\'inscrire maintenant'}
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour afficher toutes les formations
+        function displayAllFormations() {
+            // Trier par formations populaires en premier
+            const sortedFormations = [...allFormations].sort((a, b) => {
+                if (a.featured && !b.featured) return -1;
+                if (!a.featured && b.featured) return 1;
+                return b.rating - a.rating;
+            });
+
+            formationsGrid.innerHTML = sortedFormations
+                .map((formation, index) => createFormationCard(formation, index))
+                .join('');
+        }
+
+        // Fonction pour voir les détails d'une formation
+        function viewFormationDetails(formationId) {
+            const formation = allFormations.find(f => f.id === formationId);
+            if (!formation) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white dark:bg-dark rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="relative">
+                        <img src="${formation.image}" alt="${formation.title}" class="w-full h-64 object-cover">
+                        <button onclick="this.closest('.fixed').remove()" class="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-black/90 rounded-full flex items-center justify-center text-2xl hover:bg-white dark:hover:bg-black transition-colors">
+                            ×
+                        </button>
+                        <div class="absolute bottom-4 left-6 text-white">
+                            <h2 class="text-3xl font-bold mb-2">${formation.title}</h2>
+                            <div class="flex items-center gap-4">
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">${formation.category}</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm capitalize">${formation.level}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Description</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">${formation.description}</p>
+                                
+                                <h3 class="text-xl font-bold mb-4">Modules du programme</h3>
+                                <ul class="space-y-2">
+                                    ${formation.modules.map(module => 
+                                        `<li class="flex items-center text-gray-600 dark:text-gray-300">
+                                            <i class="fas fa-check text-green-500 mr-3"></i>
+                                            ${module}
+                                        </li>`
+                                    ).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Informations pratiques</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-clock w-5 mr-3 text-primary"></i>
+                                        <span><strong>Durée:</strong> ${formation.duration}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-calendar-alt w-5 mr-3 text-primary"></i>
+                                        <span><strong>Planning:</strong> ${formation.schedule}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user-tie w-5 mr-3 text-primary"></i>
+                                        <span><strong>Formateur:</strong> ${formation.instructor}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-users w-5 mr-3 text-primary"></i>
+                                        <span><strong>Places:</strong> ${formation.currentParticipants}/${formation.maxParticipants}</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star w-5 mr-3 text-primary"></i>
+                                        <span><strong>Note:</strong> ${formation.rating}/5</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-euro-sign w-5 mr-3 text-primary"></i>
+                                        <span><strong>Prix:</strong> ${formation.price}€</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-8">
+                                    <a href="https://wa.me/${formation.whatsappContact}?text=Bonjour, je souhaite m'inscrire à la formation ${encodeURIComponent(formation.title)}" 
+                                       target="_blank" 
+                                       class="block text-center w-full py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                                        <i class="fab fa-whatsapp mr-2"></i>S'inscrire maintenant
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Fermer en cliquant à l'extérieur
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Menu mobile
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Bouton retour en haut
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (scrollButton) {
+                if (window.pageYOffset > 300) {
+                    scrollButton.classList.remove('hidden');
+                } else {
+                    scrollButton.classList.add('hidden');
+                }
+            }
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Charger le thème sauvegardé
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+            
+            // Afficher toutes les formations
+            displayAllFormations();
+            
+            // Observer les sections pour l'animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Ajouter le bouton de retour en haut
+            const scrollToTopButton = document.createElement('button');
+            scrollToTopButton.id = 'scrollToTop';
+            scrollToTopButton.className = 'fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 z-40 hidden flex items-center justify-center';
+            scrollToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            scrollToTopButton.onclick = scrollToTop;
+            document.body.appendChild(scrollToTopButton);
+        });
+    </script>
+</body>
+</html>

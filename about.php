@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - GilTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                        dark: '#0f172a',
+                        'dark-light': '#1e293b'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounceIt 3s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes bounceIt {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.php" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold gradient-text">GilTech</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.php" class="hover:text-primary transition-colors">Accueil</a>
+                    <a href="produits.php" class="hover:text-primary transition-colors">Produits</a>
+                    <a href="formations.php" class="hover:text-primary transition-colors">Formations</a>
+                    <a href="about.php" class="text-primary font-semibold">À propos</a>
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                
+                <button id="mobileMenuBtn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden md:hidden glass">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.php" class="block hover:text-primary transition-colors">Accueil</a>
+                <a href="produits.php" class="block hover:text-primary transition-colors">Produits</a>
+                <a href="formations.php" class="block hover:text-primary transition-colors">Formations</a>
+                <a href="about.php" class="block text-primary font-semibold">À propos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 relative overflow-hidden">
+        <!-- Éléments décoratifs -->
+        <div class="absolute top-20 left-20 w-24 h-24 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 right-20 w-32 h-32 bg-secondary/20 rounded-full blur-3xl animate-float" style="animation-delay: -2s;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-4xl mx-auto animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">À propos de</span><br>
+                    <span class="text-gray-800 dark:text-white">GilTech</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                    Découvrez l'histoire, la mission et l'équipe passionnée qui font de GilTech votre partenaire technologique de confiance depuis 2020.
+                </p>
+                <div class="flex justify-center">
+                    <a href="#story" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        Découvrir notre histoire
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Histoire -->
+    <section id="story" class="py-20 bg-white dark:bg-dark-light">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 animate-slide-up">
+                    <h2 class="text-4xl font-bold mb-6">
+                        <span class="gradient-text">Notre Histoire</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">
+                        Une aventure qui a commencé par une passion pour la technologie
+                    </p>
+                </div>
+                
+                <div class="space-y-16">
+                    <!-- Timeline Item 1 -->
+                    <div class="flex flex-col md:flex-row items-center gap-8 animate-slide-up">
+                        <div class="md:w-1/2">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600" alt="Création de GilTech" class="rounded-2xl shadow-lg">
+                                <div class="absolute -top-4 -left-4 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                    2020
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">La Naissance d'une Vision</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Tout a commencé en 2020 quand Gilbert, passionné d'électronique depuis l'enfance, a réalisé que l'accès aux nouvelles technologies était encore trop complexe pour beaucoup de personnes.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Avec l'ambition de démocratiser la technologie, GilTech voit le jour avec une mission claire : rendre l'électronique accessible à tous.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 2 -->
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-8 animate-slide-up">
+                        <div class="md:w-1/2">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600" alt="Expansion équipe" class="rounded-2xl shadow-lg">
+                                <div class="absolute -top-4 -right-4 w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                    2021
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">L'Expansion de l'Équipe</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Le succès rapide de nos premiers produits nous a permis de recruter Sarah et Alexandre, deux experts passionnés qui ont rejoint notre mission.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Cette année marque également le lancement de nos premiers programmes de formation, répondant à une demande croissante de nos clients.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="flex flex-col md:flex-row items-center gap-8 animate-slide-up">
+                        <div class="md:w-1/2">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600" alt="Croissance" class="rounded-2xl shadow-lg">
+                                <div class="absolute -top-4 -left-4 w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                    2023
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">Une Croissance Exceptionnelle</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Avec plus de 500 clients satisfaits et 15 formations différentes, GilTech s'impose comme une référence dans le domaine de la technologie accessible.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Notre engagement envers la qualité et l'innovation nous permet de maintenir un taux de satisfaction client de 98%.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-8 animate-slide-up">
+                        <div class="md:w-1/2">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600" alt="Avenir" class="rounded-2xl shadow-lg">
+                                <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                    2024
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <h3 class="text-2xl font-bold mb-4">Vers l'Avenir</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Aujourd'hui, nous continuons d'innover avec de nouveaux produits et formations, toujours guidés par notre mission initiale.
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                L'avenir nous réserve de beaux projets : intelligence artificielle, objets connectés, et toujours plus d'innovation accessible à tous.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Valeurs -->
+    <section class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Mission & Valeurs</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Ce qui nous guide au quotidien dans notre engagement envers nos clients
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mission -->
+                <div class="lg:col-span-3 mb-8">
+                    <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white text-center animate-scale-in">
+                        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-bullseye text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Notre Mission</h3>
+                        <p class="text-xl opacity-95 max-w-2xl mx-auto">
+                            Démocratiser l'accès aux nouvelles technologies à travers des produits de qualité et des formations pratiques, 
+                            pour que chacun puisse maîtriser et bénéficier des innovations technologiques.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Valeurs -->
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Passion</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Notre amour pour la technologie se reflète dans chaque produit que nous sélectionnons et chaque formation que nous dispensons.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Accessibilité</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Nous croyons que la technologie doit être accessible à tous, quel que soit le niveau de connaissances initial.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-medal text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Excellence</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Nous nous engageons à fournir uniquement des produits et services de la plus haute qualité à nos clients.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.3s">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Innovation</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Nous restons à l'avant-garde des innovations technologiques pour offrir les meilleures solutions.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.4s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Confiance</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Transparence, honnêteté et fiabilité sont les piliers de notre relation avec chaque client.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-light rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 animate-scale-in" style="animation-delay: 0.5s">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Impact</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Nous voulons créer un impact positif en aidant les gens à maîtriser les outils de demain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Équipe -->
+    <section class="py-20 bg-white dark:bg-dark-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Notre Équipe</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Rencontrez les passionnés qui donnent vie à la vision GilTech chaque jour
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="teamGrid">
+                <!-- L'équipe sera chargée ici via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="py-20 bg-gradient-to-r from-primary to-secondary">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-6">GilTech en Chiffres</h2>
+                <p class="text-xl text-white/90">Des résultats qui témoignent de notre engagement</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center animate-bounce-slow">
+                    <div class="text-5xl font-bold text-white mb-2">500+</div>
+                    <div class="text-white/90">Clients satisfaits</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 0.5s">
+                    <div class="text-5xl font-bold text-white mb-2">15+</div>
+                    <div class="text-white/90">Formations disponibles</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 1s">
+                    <div class="text-5xl font-bold text-white mb-2">98%</div>
+                    <div class="text-white/90">Taux de satisfaction</div>
+                </div>
+                <div class="text-center animate-bounce-slow" style="animation-delay: 1.5s">
+                    <div class="text-5xl font-bold text-white mb-2">4</div>
+                    <div class="text-white/90">Années d'excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="text-4xl font-bold mb-6">
+                    <span class="gradient-text">Contactez-nous</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Une question ? Un projet ? Notre équipe est là pour vous accompagner
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center animate-scale-in">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Email</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Écrivez-nous pour toute question ou demande d'information
+                    </p>
+                    <a href="mailto:contact@giltech.com" class="text-primary hover:text-primary/80 font-semibold">
+                        contact@giltech.com
+                    </a>
+                </div>
+                
+                <div class="text-center animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Contactez-nous directement pour une réponse rapide
+                    </p>
+                    <a href="https://wa.me/+33123456789" target="_blank" class="text-green-500 hover:text-green-600 font-semibold">
+                        +33 1 23 45 67 89
+                    </a>
+                </div>
+                
+                <div class="text-center animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Adresse</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        Venez nous rendre visite dans nos locaux parisiens
+                    </p>
+                    <p class="text-secondary font-semibold">
+                        123 Avenue de la Technologie<br>
+                        75001 Paris, France
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-slide-up">
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/80 transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-microchip text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold gradient-text">GilTech</span>
+                    </div>
+                    <p class="text-gray-300">
+                        Votre partenaire technologique de confiance pour tous vos besoins en électronique et formation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.php" class="text-gray-300 hover:text-primary transition-colors">Accueil</a></li>
+                        <li><a href="produits.php" class="text-gray-300 hover:text-primary transition-colors">Produits</a></li>
+                        <li><a href="formations.php" class="text-gray-300 hover:text-primary transition-colors">Formations</a></li>
+                        <li><a href="about.php" class="text-gray-300 hover:text-primary transition-colors">À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-primary transition-colors">Vente de produits</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Formations</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Support technique</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Conseil personnalisé</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-envelope mr-2"></i> contact@giltech.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Avenue de la Technologie, Paris</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GilTech. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données de l'équipe
+        const teamMembers = [
+            {
+                id: 1,
+                name: "Gilbert Techno",
+                position: "Fondateur & CEO",
+                bio: "Passionné de technologie depuis plus de 15 ans, Gilbert a fondé GilTech pour démocratiser l'accès aux nouvelles technologies. Expert en électronique et business development.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+                linkedin: "https://linkedin.com/in/gilbert-techno",
+                email: "gilbert@giltech.com",
+                specialties: ["Électronique", "Business Strategy", "Innovation"],
+                experience: "15+ ans d'expérience"
+            },
+            {
+                id: 2,
+                name: "Sarah Digital",
+                position: "Directrice Technique",
+                bio: "Experte en développement logiciel et formation, Sarah supervise tous nos programmes de formation et le développement de nos plateformes numériques.",
+                image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400",
+                linkedin: "https://linkedin.com/in/sarah-digital",
+                email: "sarah@giltech.com",
+                specialties: ["Développement Web", "Formation", "Management"],
+                experience: "12+ ans d'expérience"
+            },
+            {
+                id: 3,
+                name: "Alexandre Code",
+                position: "Lead Developer",
+                bio: "Développeur full-stack avec 10 ans d'expérience, Alexandre anime nos formations en programmation et développe nos solutions techniques.",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
+                linkedin: "https://linkedin.com/in/alex-code",
+                email: "alex@giltech.com",
+                specialties: ["Programming", "Web Development", "Teaching"],
+                experience: "10+ ans d'expérience"
+            },
+            {
+                id: 4,
+                name: "Emma Design",
+                position: "UX/UI Designer",
+                bio: "Créative et perfectionniste, Emma s'assure que tous nos produits et formations offrent une expérience utilisateur exceptionnelle.",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
+                linkedin: "https://linkedin.com/in/emma-design",
+                email: "emma@giltech.com",
+                specialties: ["UI/UX Design", "User Research", "Prototyping"],
+                experience: "8+ ans d'expérience"
+            },
+            {
+                id: 5,
+                name: "Michel Répar",
+                position: "Expert Réparation",
+                bio: "Technicien expert avec plus de 20 ans d'expérience, Michel forme nos étudiants aux techniques de réparation les plus avancées.",
+                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400",
+                linkedin: "https://linkedin.com/in/michel-reparation",
+                email: "michel@giltech.com",
+                specialties: ["Réparation", "Diagnostics", "Formation Technique"],
+                experience: "20+ ans d'expérience"
+            },
+            {
+                id: 6,
+                name: "Sophie Laurent",
+                position: "Responsable Marketing",
+                bio: "Spécialiste en marketing digital et communication, Sophie développe notre présence en ligne et nos stratégies de communication.",
+                image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400",
+                linkedin: "https://linkedin.com/in/sophie-marketing",
+                email: "sophie@giltech.com",
+                specialties: ["Marketing Digital", "Communication", "Social Media"],
+                experience: "7+ ans d'expérience"
+            }
+        ];
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        }
+        
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fonction pour créer une carte de membre d'équipe
+        function createTeamCard(member, index) {
+            return `
+                <div class="team-card bg-white dark:bg-dark rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden animate-scale-in" style="animation-delay: ${index * 0.1}s">
+                    <div class="relative overflow-hidden">
+                        <img src="${member.image}" alt="${member.name}" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <p class="text-sm mb-2">${member.experience}</p>
+                                <div class="flex flex-wrap gap-1">
+                                    ${member.specialties.map(specialty => 
+                                        `<span class="px-2 py-1 bg-white/20 rounded-full text-xs">${specialty}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">${member.name}</h3>
+                        <p class="text-primary font-semibold mb-3">${member.position}</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">${member.bio}</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex space-x-3">
+                                <a href="${member.linkedin}" target="_blank" class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-linkedin-in text-sm"></i>
+                                </a>
+                                <a href="mailto:${member.email}" class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-envelope text-sm"></i>
+                                </a>
+                            </div>
+                            <button onclick="viewTeamMember(${member.id})" class="px-4 py-2 text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-sm">
+                                En savoir plus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fonction pour afficher l'équipe
+        function displayTeam() {
+            const teamGrid = document.getElementById('teamGrid');
+            teamGrid.innerHTML = teamMembers.map((member, index) => createTeamCard(member, index)).join('');
+        }
+
+        // Modal pour voir les détails d'un membre de l'équipe
+        function viewTeamMember(memberId) {
+            const member = teamMembers.find(m => m.id === memberId);
+            if (!member) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white dark:bg-dark rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="relative">
+                        <img src="${member.image}" alt="${member.name}" class="w-full h-64 object-cover">
+                        <button onclick="this.closest('.fixed').remove()" class="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-black/90 rounded-full flex items-center justify-center text-2xl hover:bg-white dark:hover:bg-black transition-colors">
+                            ×
+                        </button>
+                        <div class="absolute bottom-4 left-6 text-white">
+                            <h2 class="text-2xl font-bold">${member.name}</h2>
+                            <p class="text-lg opacity-90">${member.position}</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3">À propos</h3>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${member.bio}</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3">Spécialités</h3>
+                            <div class="flex flex-wrap gap-2">
+                                ${member.specialties.map(specialty => 
+                                    `<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">${specialty}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-3">Expérience</h3>
+                            <p class="text-gray-600 dark:text-gray-300">${member.experience}</p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex space-x-4">
+                                <a href="${member.linkedin}" target="_blank" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-linkedin-in mr-2"></i>
+                                    LinkedIn
+                                </a>
+                                <a href="mailto:${member.email}" class="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-envelope mr-2"></i>
+                                    Email
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Fermer en cliquant à l'extérieur
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Smooth scrolling pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            displayTeam();
+            
+            // Observer les sections pour l'animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Bouton de retour en haut
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (scrollButton) {
+                if (window.pageYOffset > 300) {
+                    scrollButton.classList.remove('hidden');
+                } else {
+                    scrollButton.classList.add('hidden');
+                }
+            }
+        });
+
+        // Ajout du bouton de retour en haut
+        const scrollToTopButton = document.createElement('button');
+        scrollToTopButton.id = 'scrollToTop';
+        scrollToTopButton.className = 'fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 z-40 hidden flex items-center justify-center';
+        scrollToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        scrollToTopButton.onclick = scrollToTop;
+        document.body.appendChild(scrollToTopButton);
+    </script>
+</body>
+</html>
